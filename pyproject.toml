@@ -8,6 +8,7 @@ packages = [{include = "python_sepc265k1"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+pycoin = "^0.92.20230326"
 
 
 [build-system]
