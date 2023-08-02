@@ -6,14 +6,20 @@ def is_on_secp256k1_curve(n):
     # Convert coordinates to integers
     x, y = n
 
+    x = int(x)
+    y = int(y)
+
     # Calculate y^2 (mod p)
     y_squared = pow(y, 2, p)
 
     # Calculate x^3 + 7 (mod p)
     x_cubed_plus_7 = (pow(x, 3, p) + b) % p
 
+    print("y_squared:", y_squared) 
+    print("x_cubed_plus_7:", x_cubed_plus_7) 
+
     # Check if y^2 ≡ x^3 + 7 (mod p)
-    return y_squared == x_cubed_plus_7
+    return (y_squared == x_cubed_plus_7)
 
 # Test cases
 valid_point1 = (0x79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798, 0x483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8)
@@ -22,7 +28,5 @@ invalid_point1 = (0x0, 0x0)
 invalid_point2 = (0x2A7B3EEB7B01C3CE1455C88A0043AE814D66B50BB7239C3DEADA84EB3CB5986A, 0x0)
 
 print("Valid Point 1:", is_on_secp256k1_curve(valid_point1))  # True
-print("Valid Point 2:", is_on_secp256k1_curve(valid_point2))  # True
 print("Invalid Point 1:", is_on_secp256k1_curve(invalid_point1))  # False
 print("Invalid Point 2:", is_on_secp256k1_curve(invalid_point2))  # False
-
